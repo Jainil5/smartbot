@@ -21,7 +21,7 @@ function App() {
           <Route path='/sign-up' component={SignUp} />
           <Route path='/login' component={Login} />
           <Route path='/Tutorial' component={Tutorial} />
-          <Route path='/Chat' component={Chat} />
+          <Route path='chat' component={Chat} />
           <Route path='/Examples' component={Cards} />
           <Route path='/HowToUse' component={Cards2} />
           <Route path='/AboutUs' component={Cards4} />
