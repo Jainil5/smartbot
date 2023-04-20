@@ -7,23 +7,24 @@
               </div>
             <div style="height: 10vi;"></div>
             <label for="input"> </label>
-            <form method="GET" action="/Chat">
+            <form >
                 <label for="name">Name:</label>
                 <input type="text" id="name" name="name"><br>
-              
-                <label for="email">Email:</label>
-                <input type="email" id="email" name="email"><br>
-              
-                <label for="message">Message:</label>
-                <textarea id="message" name="message"></textarea><br>
-              
-                <button type="button">Submit</button>
+
+                <button type="button" onclick="print()">Submit</button>
               </form>
             <input type="text" id="input" placeholder="Please let me know how could I help you?" style="padding: 10px; width: auto;max-width: 80vw;width:100%;height: 5vh;"/>
             <div style="height: 5vi;"></div>
             <button style="padding: 10px; align-self: center;text-align: center;height: 50px;color: white;background-color: blue;font-size: 2vi;">Generate</button>
             <div style="height: 5vi;"></div>
-            <textarea placeholder="Enter some more text..." style="width: 100%; height: 30px;padding: 10px;"></textarea>
+            <textarea id="response" disabled placeholder="" style="width: 100%; height: 30px;padding: 10px;"></textarea>
         </div>
+    <script>
+        function print() {
+            let name = document.querySelector('#name').value;
+            document.querySelector('#response').innerHTML = "Hi" + name;
+        }
+        // console.log(res);
+    </script>
     </body>
 </html>
