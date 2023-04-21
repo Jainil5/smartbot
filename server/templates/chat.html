@@ -1,30 +1,40 @@
-<!DOCTYPE html>
-<html>
-    <body>
-        <div style="padding: 20px; height: 100vh;text-align: center;">
-            <div>
-                <div style="text-align: center;"><h1 style="text-align: center;"> Welcome to SmartBOT</h1><button style="float: right;">Go To Home</button></div>
-              </div>
-            <div style="height: 10vi;"></div>
-            <label for="input"> </label>
-            <form >
-                <label for="name">Name:</label>
-                <input type="text" id="name" name="name"><br>
+{% extends "base.html" %}
 
-                <button type="button" onclick="print()">Submit</button>
-              </form>
-            <input type="text" id="input" placeholder="Please let me know how could I help you?" style="padding: 10px; width: auto;max-width: 80vw;width:100%;height: 5vh;"/>
-            <div style="height: 5vi;"></div>
-            <button style="padding: 10px; align-self: center;text-align: center;height: 50px;color: white;background-color: blue;font-size: 2vi;">Generate</button>
-            <div style="height: 5vi;"></div>
-            <textarea id="response" disabled placeholder="" style="width: 100%; height: 30px;padding: 10px;"></textarea>
+{% block head %}
+<title>Chat</title>
+{% endblock %}
+
+
+{% block body %}
+        <div style="padding: 20px; height:AUTO;text-align: center;">
+          <div>
+            <div style="text-align: center;"><h1 style="text-align: center; color: blue;font-weight: bolder;"> CHAT with SMARTBOT</h1><button onclick="Home()" style="float: right;background-color:red; color: white; font-size:medium;padding:5px; outline:10;">Go To Home</button></div>
+          </div>
+          <div style="height: 8vi;"></div>
+          <div>
+          <input type="text" id="Input" placeholder="Please let me know how could I help you?" style=" padding: 10px; width: auto;max-width: 80vw;width:100%;height: 5vh;">
+          </div>
+          <div style="height: 5vi;"></div>
+          <button onclick="getReply()" style="background-color:blue; color: aliceblue; font-size: larger;padding:5px; outline:10;">Generate response</button>
+          <div style="height: 5vi;"></div>
+          <h2 id="Output" style=" padding: 10px;height: auto;font-weight: 100;"></h2>
         </div>
+  
     <script>
-        function print() {
-            let name = document.querySelector('#name').value;
-            document.querySelector('#response').innerHTML = "Hi" + name;
+      function getReply() {
+        const ask = document.getElementById('Input').value;
+        const xhr = new XMLHttpRequest();
+        xhr.open('POST', '/api/ask');
+        xhr.setRequestHeader('Content-Type', 'application/json');
+        xhr.onload = function() {
+          const response = JSON.parse(xhr.responseText);
+          document.getElementById('Output').textContent = response.reply;
+        };
+        xhr.send(JSON.stringify({ ask }));
+      }
+      function Home(){
+            window.location.href = "http://127.0.0.1:5000/";
         }
-        // console.log(res);
+
     </script>
-    </body>
-</html>
+{% endblock %}
