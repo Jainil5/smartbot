@@ -1,6 +1,14 @@
 # SmartBot
  
+### About SmartBot
+SmartBot is a website that has AI capabilities like QnA. It can give you reply for any question. 
 
+
+
+### Technologies used in developing SmartBot
+
+Frontend: React,HTML
+Backend: Python,Flask
 
 ### Screenshots
 
