@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Navbar from './components/Navbar';
 import './App.css';
 import Home from './components/pages/Home';
@@ -19,12 +19,11 @@ function App() {
           <Route path='/sign-up' component={SignUp} />
           <Route path='/login' component={Login} />
           <Route path='/Tutorial' component={Tutorial} />
-          <Route path='/chat'/>
+          
           <Route path='/Examples' component={Cards} />
           <Route path='/HowToUse' component={Cards2} />
           <Route path='/AboutUs' component={Cards4} />
           
-
         </Switch>
       </Router>
     </>

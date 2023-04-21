@@ -25,7 +25,7 @@ function Cards() {
               label='Comfort Painting'
               path='/soon' />
           </ul>
-          <ul className='cards__items'>
+          {/* <ul className='cards__items'>
             <CardItem
               src='images/VQ.jpg'
               text='Virtual Quiz'
@@ -36,7 +36,7 @@ function Cards() {
               text='Explore the Game 5(yet to release)'
               label='Adrenaline'
               path='/soon' />
-          </ul>
+          </ul> */}
         </div>
       </div>
     </div>

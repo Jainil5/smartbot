@@ -7,7 +7,6 @@ function Navbar() {
   const [click, setClick] = useState(false);
   const [button, setButton] = useState(true);
 
-  const handleClick = () => setClick(!click);
   const closeMobileMenu = () => setClick(false);
 
   const showButton = () => {
@@ -32,38 +31,17 @@ function Navbar() {
             <h1>SmartBot</h1>
             <i className='fab fa-typo3' />
           </Link>
-
-          
-
           <ul className={click ? 'nav-menu active' : 'nav-menu'}>
-
             <li className='nav-item'>
-              <Link
-                to='/chat'
+              {/* <Link
+                to = "/chat"
                 className='nav-links'
                 onClick={closeMobileMenu}
               >
                 Chat
-              </Link>
+              </Link> */}
+              <a className='nav-links' href='http://127.0.0.1:5000/chat'>Chat</a>
             </li>       
-            <li className='nav-item'>
-              <Link
-                to='/Examples'
-                className='nav-links'
-                onClick={closeMobileMenu}
-              >
-                Examples
-              </Link>
-            </li>            
-            <li className='nav-item'>
-              <Link
-                to='/HowToUse'
-                className='nav-links'
-                onClick={closeMobileMenu}
-              >
-                How To Use
-              </Link>
-            </li>
             <li className='nav-item'>
               <Link
                 to='/AboutUs'
@@ -84,7 +62,7 @@ function Navbar() {
               </Link>
             </li>
           </ul>
-          {button && <Button buttonStyle='btn--outline'>SIGN UP</Button>}
+          {button && <Button buttonStyle='btn--outline'>LOGIN</Button>}
         </div>
       </nav>
     </>

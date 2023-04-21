@@ -8,6 +8,7 @@ api = Api(app)
 openai.api_key = ""
 
 
+match = ["change volume to","set volume to"]
 
 def reply(x):
     completion = openai.ChatCompletion.create(model="gpt-3.5-turbo", messages=[{"role": "user", "content": x}])
@@ -16,8 +17,8 @@ def reply(x):
 
 class query(Resource):
     def get(self,ask):
-        #print(ask)
-        #print("\n",reply(ask))
+        print(ask)       
+        print("\n",reply(ask))
         return str(reply(ask))
 
 api.add_resource(query,"/ask/<string:ask>")
