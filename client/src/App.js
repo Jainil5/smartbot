@@ -8,9 +8,7 @@ import Login from './components/pages/Login';
 import Tutorial from './components/pages/Tutorial';
 import Cards from './components/Cards';
 import Cards2 from './components/Cards2';
-import Cards3 from './components/Cards3';
 import Cards4 from './components/Cards4';
-import Chat from './components/pages/Chat';
 function App() {
   return (
     <>
