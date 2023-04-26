@@ -1,7 +1,7 @@
 # SmartBot
  
 ### About SmartBot
-SmartBot is a AI based website that has AI capabilities 
+* SmartBot is a AI based website that has AI capabilities 
 
 ### Features of SmartBot
 * QNA : It has answer for all of you questions.
@@ -9,8 +9,8 @@ SmartBot is a AI based website that has AI capabilities
 
 ### Technologies used in developing SmartBot
 
-Frontend: React,HTML,CSS
-Backend: Python,Flask,Api
+* Frontend: React,HTML,CSS
+* Backend: Python,Flask,Api
 
 ### Screenshots
 
