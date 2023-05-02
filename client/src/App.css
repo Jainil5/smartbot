@@ -21,69 +21,12 @@
   font-size: 3rem;
 }
 
-.services {
-  background-image: url('images/img-2.jpg');
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
-  color: #fff;
-  font-size: 100px;
-}
-
-.products {
-  background-image: url('images/img-1.jpg');
-  background-position: center;
-  background-size: fill;
-  background-repeat: no-repeat;
-  color: #fff;
-  font-size: 100px;
-}
 
 .sign-up {
   /* background-image: url('images/img-8.jpg');
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat; */
-  color: #fff;
-  font-size: 100px;
-}
-.SocialService{
-  background-image: url('images/img9.gif');
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
-  color: #fff;
-  font-size: 100px;
-}
-.rps{
-  background-image: url('images/img9.gif');
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
-  color: #fff;
-  font-size: 100px;
-}
-.vp {
-  background-image: url('images/img-2.jpg');
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
-  color: #fff;
-  font-size: 100px;
-}
-.ssg1 {
-  background-image: url('images/img-2.jpg');
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
-  color: #fff;
-  font-size: 100px;
-}
-.ssg2{
-  background-image: url('images/img-2.jpg');
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
   color: #fff;
   font-size: 100px;
 }

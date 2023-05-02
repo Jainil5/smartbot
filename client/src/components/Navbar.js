@@ -28,7 +28,7 @@ function Navbar() {
       <nav className='navbar'>
         <div className='navbar-container'>
           <Link to='/' className='navbar-logo' onClick={closeMobileMenu}>
-            <h1>SmartBot</h1>
+            <h1>SMARTBOT</h1>
             <i className='fab fa-typo3' />
           </Link>
           <ul className={click ? 'nav-menu active' : 'nav-menu'}>
@@ -41,24 +41,17 @@ function Navbar() {
                 Chat
               </Link> */}
               <a className='nav-links' href='http://127.0.0.1:5000/chat'>Chat</a>
-            </li>       
+            </li>
+            <li className='nav-item'>
+              <a className='nav-links' href='http://127.0.0.1:5000/query'>Text 2 Query</a>
+            </li>
             <li className='nav-item'>
               <Link
                 to='/AboutUs'
                 className='nav-links'
                 onClick={closeMobileMenu}
               >
-                About SmartBot
-              </Link>
-            </li>
-
-            <li>
-              <Link
-                to='/sign-up'
-                className='nav-links-mobile'
-                onClick={closeMobileMenu}
-              >
-               Login
+                About Us
               </Link>
             </li>
           </ul>

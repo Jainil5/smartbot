@@ -6,7 +6,7 @@ import requests
 app = Flask(__name__)
 api = Api(app)
 openai.api_key = ""
-
+a = "xsk-DCqjESAZsRHVdEmuiyQ0T3BlbkFJFZij5fzmcVeRsj2sPwXHx"
 
 match = ["change volume to","set volume to"]
 
@@ -22,6 +22,9 @@ class query(Resource):
         return str(reply(ask))
 
 api.add_resource(query,"/ask/<string:ask>")
+
+
+
 
 
 if __name__ == "__main__":

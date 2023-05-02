@@ -3,7 +3,28 @@
     {% block head %} 
     {% endblock %}
     <body>
-    {% block body %}
-    {% endblock %}
+        <div>
+            <div style="text-align: center;"><h1 style="text-align: center; color: blue;font-weight: bolder;"> WELCOME TO DEVELOPERS DEN </h1><button onclick="Home()" style="cursor: pointer;float: right;background-color:red; color: white; font-size:medium;padding:5px; outline:10;">Go To Home</button></div>
+        </div>
+        <script>
+            function getReply() {
+              const ask = document.getElementById('Input').value;
+              const xhr = new XMLHttpRequest();
+              xhr.open('POST', '/api/ask');
+              xhr.setRequestHeader('Content-Type', 'application/json');
+              xhr.onload = function() {
+                const response = JSON.parse(xhr.responseText);
+                document.getElementById('Output').textContent = response.reply;
+              };
+              xhr.send(JSON.stringify({ ask }));
+            }
+            function Home(){
+                  window.location.href = "http://127.0.0.1:5000/";
+              }
+      
+          </script>
+        {% block body %}
+    
+        {% endblock %}
     </body>
 </html>

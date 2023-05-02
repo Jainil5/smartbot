@@ -94,3 +94,90 @@
     </script>
   </body>
 </html>
+
+
+
+
+
+
+{% extends "base.html" %}
+
+{% block head %}
+<title>Query</title>
+{% endblock %}
+
+{% block body %}
+        <div style="padding: 20px; height:AUTO;text-align: center;">
+          <div>
+            <div style="text-align: center;"><h1 style="text-align: center; color: blue;font-weight: bolder;"> Text2SQL with DevsDen</h1><button onclick="Home()" style="cursor: pointer;float: right;background-color:red; color: white; font-size:medium;padding:5px; outline:10;">Go To Home</button></div>
+          </div>
+          <div style="height: 8vi;"></div>
+          <form action="/upload" method="post" enctype="multipart/form-data">
+            <input type="file" name="file">
+            <input type="submit" value="Submit">
+          </form>
+          <div>
+          <input type="text" id="Input" placeholder="Please let me know how could I help you?" style=" padding: 10px; width: auto;max-width: 80vw;width:100%;height: 5vh;">
+          </div>
+          <div style="height: 5vi;"></div>
+          <button onclick="getReply()" style="cursor: pointer ; background-color:blue; color: aliceblue; font-size: larger;padding:5px; outline:10;">Generate response</button>
+          <div style="height: 5vi;"></div>
+          <h2 id="Output" style=" padding: 10px;height: auto;font-weight: 100;"></h2>
+        </div>
+    <script>
+      function getReply() {
+        const ask = document.getElementById('Input').value;
+        const xhr = new XMLHttpRequest();
+        xhr.open('POST', '/api/ask');
+        xhr.setRequestHeader('Content-Type', 'application/json');
+        xhr.onload = function() {
+          const response = JSON.parse(xhr.responseText);
+          document.getElementById('Output').textContent = response.reply;
+        };
+        sendy = "Table with properties: " + str(headers) + str(ask)
+        xhr.send(JSON.stringify({ sendy }));
+        }
+        function Home(){
+            window.location.href = "http://127.0.0.1:5000/";
+        }
+        function readCsvFile() {
+        const fileInput = document.getElementById("csv-file-input");
+        const file = fileInput.files[0];
+        const reader = new FileReader();
+
+        reader.onload = function(event) {
+            const csv = event.target.result;
+            const headers = csv.split('\n')[0].split(',');
+
+            sendHeadersToApi(headers);
+        }
+
+        reader.readAsText(file);
+        }
+        function sendHeadersToApi(headers) {
+        // Replace this with your actual API endpoint URL
+        const apiUrl = "http://localhost:5000/upload-csv-headers";
+
+        fetch(apiUrl, {
+            method: "POST",
+            body: JSON.stringify({ headers: headers }),
+            headers: {
+            "Content-Type": "application/json"
+            }
+        })
+        .then(response => {
+            if (!response.ok) {
+            throw new Error("API response not ok");
+            }
+            return response.json();
+        })
+        .then(data => {
+            console.log("API response:", data);
+        })
+        .catch(error => {
+            console.error("API request failed:", error);
+        });
+        }
+
+    </script>
+{% endblock %}
