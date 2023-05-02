@@ -1,0 +1,132 @@
+{% extends "base.html" %}
+
+{% block head %}
+<title>T2SQL</title>
+<style>
+    #headers-container {
+        display: flex;
+        justify-content: left;
+        flex-direction: row;
+        width: 100vw;
+        overflow: scroll;
+    }
+    #headers-container div {
+        margin-right: 10px;
+    }
+</style>
+{% endblock %}
+{% block body %}
+        <div style="padding: 20px; height:AUTO;text-align: center; ">
+          <div>
+            <div style="text-align: center;"><h1 style="text-align: center; color: blue;font-weight: bolder;"> Text2SQL with SMARTBOT</h1><button onclick="Home()" style="cursor: pointer;float: right;background-color:red; color: white; font-size:medium;padding:5px; outline:10;">Go To Home</button></div>
+        </div>
+        <div style="height: 8vi;"></div>
+        <form id="csv-form">
+	            <label for="csv-file">Choose a CSV file:</label>
+		        <input type="file" id="csv-file" accept=".csv">
+		        <button type="submit">Submit</button>
+	    </form>
+        <div style="height: 5vi;"></div>
+        <div id="headers-container" >Click submit to see your table properties.</div>
+        <div style="height: 5vi;"></div>  
+        <div>
+          <input type="text" id="Input" placeholder="Enter text to find query of : (EXAMPLE: Query to find id where country india and gender is male.)" style=" padding: 10px; width: auto;max-width: 80vw;width:100%;height: 5vh;">
+          </div>
+          <div style="height: 5vi;"></div>
+          <button onclick="getReply()" style="cursor: pointer ; background-color:blue; color: aliceblue; font-size: larger;padding:5px; outline:10;">Generate response</button>
+          <div style="height: 5vi;"></div>
+          <h2 id="Output" style=" padding: 10px;height: auto;font-weight: 100;"></h2>
+        </div>
+    <script>
+        var flag = 0
+        const form = document.getElementById('csv-form');
+		form.addEventListener('submit', (event) => {
+			event.preventDefault();
+			const fileInput = document.getElementById('csv-file');
+            if (!fileInput.files.length) {
+            alert('Please select a CSV file');
+            return;
+            }
+			const file = fileInput.files[0];
+			const reader = new FileReader();
+			reader.readAsText(file);
+			reader.onload = () => {
+				const data = reader.result;
+				const lines = data.split('\n');
+				const headers = lines[0].split(',');
+				const headersContainer = document.getElementById('headers-container');
+				headersContainer.innerHTML = '';
+				headers.forEach(header => {
+					const headerContainer = document.createElement('div');
+					const headerText = document.createElement('p');
+					headerText.textContent = header;
+					headerContainer.appendChild(headerText);
+					headersContainer.appendChild(headerContainer);
+				});
+				fetch('/api/csv', {
+					method: 'POST',
+					body: JSON.stringify({ headers }),
+					headers: { 'Content-Type': 'application/json' }
+				})
+				.then(response => response.json())
+				.then(result => console.log(result))
+				.catch(error => console.error(error));
+			};
+		});
+
+
+        function getReply() {
+
+        const ask = document.getElementById('Input').value;
+        const xhr = new XMLHttpRequest();
+        xhr.open('POST', '/api/ask');
+        xhr.setRequestHeader('Content-Type', 'application/json');
+        xhr.onload = function() {
+          const response = JSON.parse(xhr.responseText);
+          document.getElementById('Output').textContent = response.reply;
+        };
+        xhr.send(JSON.stringify({ ask }));
+        }
+        function Home(){
+            window.location.href = "http://127.0.0.1:5000/";
+        }
+        function readCsvFile() {
+        const fileInput = document.getElementById("csv-file-input");
+        const file = fileInput.files[0];
+        const reader = new FileReader();
+
+        reader.onload = function(event) {
+            const csv = event.target.result;
+            const headers = csv.split('\n')[0].split(',');
+
+            sendHeadersToApi(headers);
+        }
+        reader.readAsText(file);
+        }
+        function sendHeadersToApi(headers) {
+        // Replace this with your actual API endpoint URL
+        const apiUrl = "http://localhost:5000/upload-csv-headers";
+
+        fetch(apiUrl, {
+            method: "POST",
+            body: JSON.stringify({ headers: headers }),
+            headers: {
+            "Content-Type": "application/json"
+            }
+        })
+        .then(response => {
+            if (!response.ok) {
+            throw new Error("API response not ok");
+            }
+            return response.json();
+        })
+        .then(data => {
+            console.log("API response:", data);
+        })
+        .catch(error => {
+            console.error("API request failed:", error);
+        });
+        }
+
+    </script>
+{% endblock %}
